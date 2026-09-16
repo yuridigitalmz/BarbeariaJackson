@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-MZ">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTNP2B3N7B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HTNP2B3N7B');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jeckson Barbeiro Sorriso — Barbearia na Beira</title>
@@ -139,6 +148,9 @@
   .contacto-lista a { color: var(--cor-principal); font-weight: 600; }
 
   footer { background: var(--cor-principal); color: #94a3b8; text-align: center; padding: 24px 0; font-size: 0.85rem; }
+  .assinatura-criador { margin-top: 8px; font-size: 0.75rem; color: #64748b; }
+  .assinatura-criador a { color: #94a3b8; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+  .assinatura-criador a:hover { color: #ffffff; }
 
   /* Botão Fixo */
   .whatsapp-fixo {
@@ -321,6 +333,7 @@
 
 <footer>
   <div class="wrap">Jeckson Barbeiro Sorriso © 2026 · Todos os direitos reservados</div>
+  <div class="wrap assinatura-criador">Site criado por <a href="https://yuridigitalmz.github.io/yuridigital/" target="_blank" rel="noopener">Yuri Digital</a></div>
 </footer>
 
 <a class="whatsapp-fixo" href="https://wa.me/258871710898?text=Ol%C3%A1%20Barbeiro%20Sorriso%2C%20quero%20agendar%20um%20hor%C3%A1rio" aria-label="Agendar no WhatsApp">
@@ -496,6 +509,28 @@
     '  50%     { transform: translate(calc(-14px * var(--sentido)), -14px) rotate(calc(-10deg * var(--sentido))); opacity: 0.75; }' +
     '}';
   document.head.appendChild(folha);
+})();
+
+// ---------- Medir o que realmente converte (Google Analytics) ----------
+(function medirConversoes() {
+  function registar(nome, detalhe) {
+    if (typeof gtag === 'function') {
+      gtag('event', nome, { evento_detalhe: detalhe || '' });
+    }
+  }
+
+  document.querySelectorAll('a[href^="https://wa.me"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      registar('clique_whatsapp', link.className || link.href);
+    });
+  });
+
+  var botaoMarcar = document.getElementById('botao-confirmar-marcacao');
+  if (botaoMarcar) {
+    botaoMarcar.addEventListener('click', function () {
+      if (!botaoMarcar.disabled) registar('marcacao_confirmada');
+    });
+  }
 })();
 </script>
 
